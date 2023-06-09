@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Swagger UI</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.3/swagger-ui.css">
+    <style>
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            background: #fafafa;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+
+        .search-container input {
+            margin-right: 10px;
+            padding: 5px;
+            width: 200px;
+        }
+
+        .search-container button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="swagger-ui"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.3/swagger-ui-bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.52.3/swagger-ui-standalone-preset.js"></script>
+<script>
+    window.onload = function () {
+        // Begin Swagger UI call region
+        const ui = SwaggerUIBundle({
+            url: "./swagger.json",
+            dom_id: '#swagger-ui',
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIStandalonePreset,
+            ],
+            layout: "BaseLayout",
+        });
+        // End Swagger UI call region
+
+        // Add search bar and explore button
+        const searchBar = document.createElement("div");
+        searchBar.className = "search-container";
+
+        const searchInput = document.createElement("input");
+        searchInput.type = "text";
+        searchInput.placeholder = "Search...";
+        searchBar.appendChild(searchInput);
+
+        const exploreButton = document.createElement("button");
+        exploreButton.innerHTML = "Explore";
+        searchBar.appendChild(exploreButton);
+
+        document.querySelector(".swagger-ui .topbar").appendChild(searchBar);
+
+        window.ui = ui;
+    };
+</script>
+</body>
+</html>
