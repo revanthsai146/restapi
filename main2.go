@@ -52,19 +52,9 @@ func main() {
 	// swaggerURL := echoSwagger.URL("/swagger.json")
 	// e.GET("/swagger/*", echoSwagger.EchoWrapHandler(swaggerFiles.Handler, swaggerURL))
 
-	// Generate and serve the Swagger UI HTML content
-	// e.GET("/swagger-ui", func(c echo.Context) error {
-	// 	swaggerConfig := echoSwagger.DefaultConfig()
-	// 	swaggerConfig.URL = "/swagger.json"
-	// 	htmlContent, err := swag.ReadDoc()
-	// 	if err != nil {
-	// 		return c.String(http.StatusInternalServerError, "Failed to generate Swagger UI")
-	// 	}
-	// 	return c.HTML(http.StatusOK, htmlContent)
-	// })
-	// e.GET("/", func(c echo.Context) error {
-	// 	return c.JSON(http.StatusOK, "Hello World")
-	// })
+	e.GET("/", func(c echo.Context) error {
+	return c.JSON(http.StatusOK, "Hello World")
+        })
 	e.GET("/employees", getEmployees)
 	e.Logger.Fatal(e.Start(":9031"))
 
